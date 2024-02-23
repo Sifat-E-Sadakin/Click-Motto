@@ -108,7 +108,9 @@ const Navbar = () => {
               <div className="border border-[#818181] h-10"></div>
             </li>
             <li>
-              <button className="">Login</button>
+              <button className="hover:font-semibold hover:text-black">
+                Login
+              </button>
             </li>
             <li>
               <button className="btn btn-error">Join Free</button>

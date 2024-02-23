@@ -46,6 +46,10 @@ const Banner = () => {
             Summer, Food, Covid-19, React State, Love
           </span>
         </p>
+        <p className="opacity-0 translate-y-[-200px] text-right mt-32 hidden md:block">
+          Photo of the day <span className="opacity-70">by</span>{" "}
+          <span className=" underline">John Doe</span>
+        </p>
       </div>
     </div>
   );
