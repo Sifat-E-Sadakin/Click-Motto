@@ -18,3 +18,7 @@
   left: 0px !important;
   z-index: 9;
 }
+
+.slick-arrow {
+  opacity: 0;
+}

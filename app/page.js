@@ -6,7 +6,7 @@ import Gallery from "./components/blocks/Gallery";
 
 export default function Home() {
   return (
-    <main className="">
+    <main>
       <Navbar />
       <Banner />
       <div className="px-3 md:px-32 ">

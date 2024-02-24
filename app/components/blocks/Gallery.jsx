@@ -11,24 +11,37 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Gallery = () => {
   const columnsCountBreakPoints = { 350: 1, 750: 2, 900: 3 };
-
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.from(".gallery", {
-      scrollTrigger: {
-        trigger: ".gallery",
-        start: "top 80%",
-      },
-      duration: 1,
-      opacity: 0,
-      y: 100,
-      ease: "power3.inOut",
-      toggleActions: "play none none reverse",
-    });
-  });
+  const container = useRef(null);
+  useGSAP(
+    () => {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.to(".gallery-nav", {
+        scrollTrigger: {
+          trigger: ".gallery-nav",
+          start: "top 100%",
+        },
+        duration: 1.5,
+        opacity: 1,
+        y: 0,
+        ease: "power3.inOut",
+      });
+      gsap.to(".gallery-img", {
+        opacity: 1,
+        y: 0,
+        duration: 1.5,
+        scrollTrigger: {
+          trigger: ".gallery-img",
+          start: "top 100%",
+        },
+      });
+    },
+    {
+      scope: container,
+    }
+  );
   return (
-    <div className="py-0 px-8 gallery">
-      <nav className="flex justify-between items-center mt-5">
+    <div className="py-0 px-8" ref={container}>
+      <nav className="flex justify-between items-center mt-5 gallery-nav opacity-0 translate-y-[50px]">
         <ul className="flex gap-3 items-center m-0 p-0 text-xl font-medium mr-5 cursor-pointer text-[#707070]">
           <li className="text-black">All</li>
           <li className=" hover:text-black">Photos</li>
@@ -59,17 +72,18 @@ const Gallery = () => {
         </div>
       </nav>
 
-      <div className="my-5">
+      <div className="my-5 gallery-img opacity-0 translate-y-[100px]">
         <ResponsiveMasonry columnsCountBreakPoints={columnsCountBreakPoints}>
           <Masonry gutter="15px">
             {galleryImgList.map(image => (
-              <img
-                src={image.url}
-                style={{ width: "100%" }}
-                alt="gallery_img"
-                key={image.id}
-                className="hover:scale-110 duration-200"
-              />
+              <div className="w-full overflow-hidden" key={image.id}>
+                <img
+                  src={image.url}
+                  style={{ width: "100%" }}
+                  alt="gallery_img"
+                  className="hover:scale-125 duration-700"
+                />
+              </div>
             ))}
           </Masonry>
         </ResponsiveMasonry>
